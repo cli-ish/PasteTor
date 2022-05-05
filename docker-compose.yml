@@ -1,0 +1,41 @@
+version: '3'
+services:
+  tor-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile.tor
+    volumes:
+      - ./data/tor:/var/lib/tor
+    networks:
+      - no-internet
+      - internet
+    restart: always
+
+  hidden-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.hidden_service
+    dns: 0.0.0.0
+    environment:
+      - REDISDB=redis
+      - USERS=/opt/pastetor/user.list
+    volumes:
+      - ./user.list:/opt/pastetor/user.list:ro
+    networks:
+      - no-internet
+    restart: always
+
+  redis:
+    image: redis:latest
+    dns: 0.0.0.0
+    volumes:
+      - ./data/redis/redis-data:/var/lib/redis
+      - ./data/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - no-internet
+    restart: always
+
+networks:
+  internet: { }
+  no-internet:
+    internal: true

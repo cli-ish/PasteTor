@@ -1,0 +1,30 @@
+FROM golang:1.18.1-buster AS builder
+WORKDIR /app
+COPY ./logic ./logic
+COPY ./redis ./redis
+COPY ./styles ./styles
+COPY ./templates ./templates
+COPY ./*.go ./
+COPY ./go.mod ./
+COPY ./go.sum ./
+RUN CGO_ENABLED=0 go build -o ./pastetor -ldflags="-s -w" -a -installsuffix cgo
+
+FROM alpine:latest
+ENV USER=runner
+ENV UID=1000
+ENV GID=1000
+WORKDIR /opt/pastetor/
+COPY --from=builder /app/pastetor ./
+RUN chmod 771 /opt/pastetor/*
+RUN chmod +x /opt/pastetor/*
+RUN addgroup -S $USER
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/opt/pastetor/" \
+    --ingroup "$USER" \
+    --no-create-home \
+    --uid "$UID" \
+    "$USER"
+USER $USER
+ENTRYPOINT ["/opt/pastetor/pastetor"]

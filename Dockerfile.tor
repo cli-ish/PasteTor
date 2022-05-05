@@ -1,0 +1,19 @@
+FROM alpine:latest
+
+RUN apk --update \
+        --allow-untrusted \
+        --repository https://dl-4.alpinelinux.org/alpine/edge/community/ \
+        add tor torsocks && apk --update \
+        --allow-untrusted \
+        --repository https://dl-4.alpinelinux.org/alpine/edge/testing/ \
+        add obfs4proxy &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
+
+RUN cp -f /etc/tor/torrc.sample /etc/tor/torrc
+RUN echo 'HiddenServiceDir /var/lib/tor/hidden_service/' >> /etc/tor/torrc
+RUN echo 'HiddenServicePort 80 hidden-service:9000' >> /etc/tor/torrc
+
+RUN mkdir -p /var/lib/tor/hidden_service
+RUN chown tor:root /var/lib/tor/hidden_service
+RUN chmod 700 /var/lib/tor/hidden_service
+USER tor
+ENTRYPOINT ["tor"]

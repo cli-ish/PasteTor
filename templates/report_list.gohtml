@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PasteTor - Reported Notes</title>
+    <link href="/styles/bundle.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="container">
+            <div class="header_container">
+                <div class="header_left">
+                    <a class="header_logo" href="/">PasteTor</a>
+                    <div class="header_links">
+                        <a href="/faq">faq</a>
+                        <a href="/management/allowed/">allowed-list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div>
+                <form class="form-horizontal" action="/" method="post">
+                    <div class="content_title">
+                        Reported notes
+                    </div>
+                    <div class="form-group field-postform-text">
+                        <table class="management-table">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>operation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{range .Notes}}
+                                <tr>
+                                    <td class="noteid">
+                                        <a href="/p/{{.}}" target="_blank">{{.}}</a>
+                                    </td>
+                                    <td class="op">
+                                        <a href="/management/delete/{{.}}?csrf={{$.Csrf}}" class="delete">Delete</a> /
+                                        <a href="/management/allow/{{.}}?csrf={{$.Csrf}}" class="allow">Allow</a>
+                                    </td>
+                                </tr>
+                            {{end}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

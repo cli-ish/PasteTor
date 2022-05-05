@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PasteTor - Report</title>
+    <link href="/styles/bundle.min.css" rel="stylesheet">
+    <meta http-equiv="refresh" content="5;url=/p/{{.Id}}"/>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="header">
+        <div class="container">
+            <div class="header_container">
+                <div class="header_left">
+                    <a class="header_logo" href="/">PasteTor</a>
+                    <div class="header_links">
+                        <a href="/faq">faq</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div>
+                <div class="form-horizontal">
+                    <div class="content_title">
+                        {{.Message}}
+                    </div>
+                    <div class="form-group field-postform-text">
+                        You will be redirected in 5 seconds, you can go <a href="/p/{{.Id}}">back now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PasteTor - Paste</title>
+    <link href="/styles/bundle.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="container">
+            <div class="header_container">
+                <div class="header_left">
+                    <a class="header_logo" href="/">PasteTor</a>
+                    <div class="header_links">
+                        <a href="/faq">faq</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div>
+                <div class="form-horizontal">
+                    <div class="content_title">
+                        Your Paste
+                    </div>
+                    <div class="form-group field-postform-text">
+                        <!--suppress HtmlFormInputWithoutLabel -->
+                        <textarea class="textarea" name="paste_content" autofocus="" readonly>{{.Note.Data}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn" href="/raw/{{.Note.Id}}">Do you like it raw?</a>
+                        <a class="btn right" href="/report/{{.Note.Id}}">Not allowed? Report me Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
