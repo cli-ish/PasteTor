@@ -4,7 +4,7 @@ A simple Paste Tor service with a small management overlay written in golang + a
 needs.
 Allows quick setup for your own hidden service.
 
-### Features
+## Features
 
 Add a note and send it to whoever should watch this note. Totally secure over Tor!
 
@@ -23,13 +23,21 @@ Whitelisted reported can not be reported again until they are removed from this 
 
 ![Manage allowed notes](screenshots/manage_allowed.jpg)
 
-### Requirements
+## Requirements
 
 Docker + Docker-Compose
 
 Around 200mb space for the docker images. After building the huge buster image can be removed.
 
-### Setup
+## Todo:
+
+* Add a option to encrypt content client-side
+  * Default no-script behavior if js is not allowed.
+  * Small js code to encrypt client-side and send the data to the server (base64)
+  * Small key generator to ensure safe key length for encryption.
+  * How should the reporting be handled? should the report send the key to the admin or how should he decide to keep it or delete it?
+
+## Setup
 
 ```bash
 sudo bash rebuild.sh

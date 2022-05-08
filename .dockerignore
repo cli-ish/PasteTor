@@ -1,4 +1,5 @@
 .idea
+.git
 data
 screenshots
 Dockerfile.hidden_service
