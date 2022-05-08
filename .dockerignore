@@ -1,0 +1,9 @@
+.idea
+data
+screenshots
+Dockerfile.hidden_service
+Dockerfile.tor
+docker-compose.yml
+Readme.md
+user.list
+rebuild.sh

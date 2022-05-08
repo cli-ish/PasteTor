@@ -16,6 +16,7 @@ services:
       context: .
       dockerfile: Dockerfile.hidden_service
     dns: 0.0.0.0
+    read_only: true
     environment:
       - REDISDB=redis
       - USERS=/opt/pastetor/user.list
